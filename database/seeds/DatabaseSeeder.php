@@ -11,6 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+
+        // Sorts of grape database seeder
+         $this->call(SortsSeeder::class);
+
     }
 }
