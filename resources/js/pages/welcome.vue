@@ -17,25 +17,72 @@
       </template>
     </div>
 
+
+
     <div class="text-center">
       <div class="title mb-4">
         {{ title }}
       </div>
 
       <div class="links">
-        <a href="https://github.com/cretueusebiu/laravel-vue-spa">github.com/cretueusebiu/laravel-vue-spa</a>
+
       </div>
 
-      <div>
-        Some content
+
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+        Launch demo modal
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <button type="button" class="btn btn-primary">Primary</button>
+      <button type="button" class="btn btn-secondary">Secondary</button>
+      <button type="button" class="btn btn-success">Success</button>
+      <button type="button" class="btn btn-danger">Danger</button>
+      <button type="button" class="btn btn-warning">Warning</button>
+      <button type="button" class="btn btn-info">Info</button>
+      <button type="button" class="btn btn-light">Light</button>
+      <button type="button" class="btn btn-dark">Dark</button>
+
+
+      <v-button>ЗАГРУЗИТЬ</v-button>
+
+
+      <div v-if="sortsloaded">
+        <ul>
+          <li v-for="sort in $root.sorts">
+            {{ sort.id + ' ' + sort.title }}
+          </li>
+        </ul>
+      </div>
+
+
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import axios from 'axios'
 
 export default {
   layout: 'basic',
@@ -49,29 +96,9 @@ export default {
   }),
 
   computed: mapGetters({
-    authenticated: 'auth/check'
-  }),
-
-  methods: {
-    async getsortlist () {
-      const { data } = await axios.post('/api/sorts')
-      // 'data' contains all of grape sorts
-
-
-
-
-        console.log(this.$root.sorts = data)
-      // this.root.data.sorts = data
-        console.log(this.$store)
-        console.log(this)
-
-
-    }
-  },
-
-  created () {
-    this.getsortlist()
-  }
+    authenticated: 'auth/check',
+    sortsloaded: 'sorts/loaded'
+  })
 
 }
 </script>
