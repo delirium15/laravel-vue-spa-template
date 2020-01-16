@@ -32,7 +32,8 @@ export default {
 
   data: () => ({
     layout: null,
-    defaultLayout: 'default'
+    defaultLayout: 'default',
+    sorts: []
   }),
 
   metaInfo () {
