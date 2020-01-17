@@ -10,7 +10,6 @@
 
 <script>
 import Loading from './Loading'
-import { mapGetters } from 'vuex'
 import axios from 'axios'
 
 // Load layout components dynamically.
@@ -49,18 +48,15 @@ export default {
 
   mounted () {
     this.$loading = this.$refs.loading
-  },
-
-  created () {
-    this.getsortlist()
+    this.getsortslist()
   },
 
   methods: {
     /**
-             * Set the application layout.
-             *
-             * @param {String} layout
-             */
+   * Set the application layout.
+   *
+   * @param {String} layout
+   */
     setLayout (layout) {
       if (!layout || !layouts[layout]) {
         layout = this.defaultLayout
@@ -69,17 +65,15 @@ export default {
       this.layout = layouts[layout]
     },
 
-    async getsortlist () {
+    async getsortslist () {
       const { data } = await axios.post('/api/sorts') // 'data' contains all of grape sorts from DB
       this.sorts = data
+
+      this.$store.dispatch('sorts/confirmload')
+
     }
 
-  },
-
-  computed: mapGetters({
-    sortsLoaded: 'sorts/isloaded'
-
-  })
+  }
 
 }
 </script>

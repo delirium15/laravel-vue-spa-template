@@ -8,3 +8,6 @@ export const UPDATE_USER = 'UPDATE_USER'
 
 // lang.js
 export const SET_LOCALE = 'SET_LOCALE'
+
+// sorts.js
+export const SET_LOADED = 'SET_LOADED'
