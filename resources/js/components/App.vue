@@ -54,7 +54,6 @@ export default {
   methods: {
     /**
    * Set the application layout.
-   *
    * @param {String} layout
    */
     setLayout (layout) {
@@ -70,7 +69,6 @@ export default {
       this.sorts = data
 
       this.$store.dispatch('sorts/confirmload')
-
     }
 
   }
