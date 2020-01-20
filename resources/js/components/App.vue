@@ -10,7 +10,6 @@
 
 <script>
 import Loading from './Loading'
-import axios from 'axios'
 
 // Load layout components dynamically.
 const requireContext = require.context('~/layouts', false, /.*\.vue$/)
@@ -34,7 +33,7 @@ export default {
   data: () => ({
     layout: null,
     defaultLayout: 'default',
-    sorts: []
+
   }),
 
   metaInfo () {
@@ -48,7 +47,6 @@ export default {
 
   mounted () {
     this.$loading = this.$refs.loading
-    this.getsortslist()
   },
 
   methods: {
@@ -62,13 +60,6 @@ export default {
       }
 
       this.layout = layouts[layout]
-    },
-
-    async getsortslist () {
-      const { data } = await axios.post('/api/sorts') // 'data' contains all of grape sorts from DB
-      this.sorts = data
-
-      this.$store.dispatch('sorts/confirmload')
     }
 
   }
