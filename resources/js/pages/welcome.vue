@@ -24,6 +24,7 @@
 
       <div class="links" />
 
+
       <!-- Button trigger modal -->
 <!--      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">-->
 <!--        Launch demo modal-->
@@ -82,8 +83,10 @@
 <!--      <v-button>ЗАГРУЗИТЬ</v-button>-->
 
       <!-- SORTS LIST -->
+      <transition
+        name="slide-fade">
       <sorts-list />
-
+      </transition>
 
 
     </div>
