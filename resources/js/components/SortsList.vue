@@ -98,7 +98,11 @@ export default {
 
   .card {
     text-align: left;
-    flex-direction: row;
+  }
+  @media screen and (min-width: 768px){
+    .card {
+      flex-direction: row;
+    }
   }
   .card-body {
     flex: 1;

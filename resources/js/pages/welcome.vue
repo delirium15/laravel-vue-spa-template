@@ -134,7 +134,6 @@ export default {
             'Файл успешно удален.',
             'success'
           )
-
         }
       })
     }
@@ -157,6 +156,5 @@ export default {
 .title {
   font-size: 85px;
 }
-
 
 </style>
