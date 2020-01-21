@@ -6,7 +6,7 @@
           <a id="pills-home-tab"
              class="nav-link"
              data-toggle="pill"
-             :href="getUrlKey(key)"
+             :href="`#${key}`"
              role="tab"
              aria-controls="pills-home"
              aria-selected="true"
@@ -67,14 +67,6 @@ export default {
 
       this.$store.dispatch('sorts/confirmload')
       this.$store.dispatch('sorts/getsortedlist', this.sorts)
-    },
-
-    getUrlKey (key) {
-      return '#' + key
-    },
-
-    getSortKey (key) {
-      return '#' + key
     }
   }
 
