@@ -14,7 +14,7 @@ export default {
 .basic-layout {
   color: #636b6f;
   min-height: 100vh;
-  font-weight: 100;
+  font-weight: 400;
   position: relative;
 
   .links > a {
