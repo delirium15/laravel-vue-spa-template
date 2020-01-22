@@ -27,15 +27,15 @@
 
                   <div
                     class="card__image_wrapper"
-                    :style="{'background-image': 'url(/images/'+ sort.images[0] +')'}">
+                    :style="{'background-image': `url(/images/${sort.images[0]}`}">
 <!--                    <img :src="`/images/${sort.images[0]}`" class="card-img-top card__img" :alt="sort.title">-->
                   </div>
 
-                  <div class="card-body">
-                    <h5 class="card-title">
+                  <div class="card__body card-body">
+                    <h5 class="card__title card-title">
                       {{ sort.title }}
                     </h5>
-                    <p class="card-text">
+                    <p class="card__description card-text">
                       {{ sort.description }}
                     </p>
                   </div>
@@ -91,6 +91,8 @@ export default {
 
   .card {
     text-align: left;
+    overflow: hidden;
+    border-radius: 5px;
   }
   @media screen and (min-width: 768px){
     .card {
