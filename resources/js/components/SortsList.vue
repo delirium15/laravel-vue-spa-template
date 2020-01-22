@@ -1,31 +1,36 @@
 <template>
   <div v-if="sortsLoaded">
+    <div class="container">
 
+      <ul id="sorts-tabs" class="nav nav-pills nav-fill mb-5" role="tablist">
+        <li v-for="(value, key, index) in sortsList" class="nav-item">
+          <a id="pills-home-tab"
+             :class="['nav-link', { active: key == activeTab }]"
+             data-toggle="pill"
+             :href="`#${key}`"
+             role="tab"
+             aria-controls="pills-home"
+             aria-selected="true"
+          >{{ key }}</a>
+        </li>
+      </ul>
 
-      <div class="container">
-        <ul id="pills-tab" class="nav nav-pills nav-fill mb-5" role="tablist">
-          <li v-for="value, key, index in sortsList" class="nav-item">
-            <a id="pills-home-tab"
-               class="nav-link"
-               data-toggle="pill"
-               :href="`#${key}`"
-               role="tab"
-               aria-controls="pills-home"
-               aria-selected="true"
-            >{{ key }}</a>
-          </li>
-        </ul>
-
-        <transition
-          name="slide-fade">
+      <transition name="slide-fade">
         <div id="pills-tabContent" class="tab-content">
-
-          <div v-for="value, key, index in sortsList" :id="key" class="tab-pane fade" role="tabpanel" aria-labelledby="pills-home-tab">
-            <div v-for="sort, key, index in value" class="row no-gutters row-cols-1 row-cols-md-3">
+          <div v-for="(value, key, index) in sortsList" :id="key"
+               :class="['tab-pane fade', { 'active show': key == activeTab }]"
+               role="tabpanel"
+               aria-labelledby="pills-home-tab">
+            <div v-for="(sort, key, index) in value" class="row no-gutters row-cols-1 row-cols-md-3">
               <div class="col mb-4">
-
                 <div class="card h-100">
-                  <img :src="sort.title" class="card-img-top card__img" :alt="sort.title">
+
+                  <div
+                    class="card__image_wrapper"
+                    :style="{'background-image': 'url(/images/'+ sort.images[0] +')'}">
+<!--                    <img :src="`/images/${sort.images[0]}`" class="card-img-top card__img" :alt="sort.title">-->
+                  </div>
+
                   <div class="card-body">
                     <h5 class="card-title">
                       {{ sort.title }}
@@ -35,17 +40,13 @@
                     </p>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
-
         </div>
-        </transition>
-
-      </div>
-      <!-- TABS -->
-
+      </transition>
+    </div>
+    <!-- TABS -->
   </div>
 </template>
 
@@ -67,17 +68,16 @@ export default {
 
   computed: mapGetters({
     sortsLoaded: 'sorts/loaded',
-    // sortsLoaded: false
-    sortsList: 'sorts/sortedList'
+    sortsList: 'sorts/sortedList',
+    activeTab: 'sorts/activeTab'
   }),
 
   methods: {
     async getsortslist () {
       const { data } = await axios.post('/api/sorts') // 'data' contains all of grape sorts from DB
-      this.sorts = data
 
       this.$store.dispatch('sorts/confirmload')
-      this.$store.dispatch('sorts/getsortedlist', this.sorts)
+      this.$store.dispatch('sorts/getsortedlist', data)
     }
   }
 
@@ -100,8 +100,15 @@ export default {
   .card-body {
     flex: 1;
   }
-  .card__img {
+  .card__image_wrapper {
     width: 300px;
+    min-height: 200px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+  }
+  .card__img {
+
   }
 
   /** INTERIORDOOR CARD APPEAR ANIMATION */
@@ -116,8 +123,6 @@ export default {
     transform: translateY(10px);
     opacity: 0;
   }
-
-
 
   .tab-pane.fade {
     transition: all 0.2s;

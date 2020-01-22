@@ -3,41 +3,40 @@ import * as types from '../mutation-types'
 
 export const state = {
   sortsLoaded: false,
-  sortedList: {}
+  sortedList: {},
+  activeTab: ''
 }
 
 // getters
 export const getters = {
   loaded: state => state.sortsLoaded,
-  sortedList: state => state.sortedList
-}
-
-// mutations
-export const mutations = {
-  [types.SET_LOADED] (state) {
-    state.sortsLoaded = true
-  }
+  sortedList: state => state.sortedList,
+  activeTab: state => state.activeTab
 }
 
 // actions
 export const actions = {
 
   confirmload ({ commit }) {
-    commit(types.SET_LOADED)
+    state.sortsLoaded = true
   },
 
   getsortedlist ({ commit }, data) {
-    if (Object.entries(state.sortedList).length === 0 && state.sortedList.constructor === Object) {
-      data.forEach((item) => {
-        let firstLetter = item.title[0]
+    data.forEach((item) => {
+      let firstLetter = item.title[0]
 
-        if ((state.sortedList[firstLetter] === undefined)) {
-          state.sortedList[firstLetter] = []
-        }
+      state.activeTab = state.activeTab == '' ? firstLetter : state.activeTab
 
-        state.sortedList[firstLetter].push(item)
-      })
-    }
+      if ((state.sortedList[firstLetter] === undefined)) {
+        state.sortedList[firstLetter] = []
+      }
+
+
+
+      item.images = item.images != '' ? JSON.parse(item.images) : {}
+
+      state.sortedList[firstLetter].push(item)
+    })
   }
 
 }
