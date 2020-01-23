@@ -35,7 +35,11 @@
                     <h5 class="card__title card-title">
                       {{ sort.title }}
                     </h5>
-                    <p class="card__description card-text">
+
+                      <h6>
+                          {{ sort.selection }}
+                      </h6>
+                    <p class="card-text">
                       {{ sort.description }}
                     </p>
                   </div>
@@ -59,7 +63,7 @@ export default {
   },
 
   data: () => ({
-    sorts: []
+    // sorts: []
   }),
 
   mounted () {
