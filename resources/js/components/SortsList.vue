@@ -21,7 +21,7 @@
                :class="['tab-pane fade', { 'active show': key == activeTab }]"
                role="tabpanel"
                aria-labelledby="pills-home-tab">
-            <div v-for="(sort, key, index) in value" class="row no-gutters row-cols-1 row-cols-md-3">
+            <div v-for="(sort, key, index) in value" class="row no-gutters row-cols-1">
               <div class="col mb-4">
                 <div class="card h-100">
 
