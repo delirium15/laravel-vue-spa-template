@@ -3,9 +3,9 @@
     <div class="container">
 
       <ul id="sorts-tabs" class="nav nav-pills nav-fill mb-5" role="tablist">
-        <li v-for="(value, key, index) in sortsList" class="nav-item">
+        <li v-for="(value, key) in sortsList" class="nav-item">
           <a id="pills-home-tab"
-             :class="['nav-link', { active: key == activeTab }]"
+             :class="['nav-link', { active: key === activeTab }]"
              data-toggle="pill"
              :href="`#${key}`"
              role="tab"
@@ -17,11 +17,11 @@
 
       <transition name="slide-fade">
         <div id="pills-tabContent" class="tab-content">
-          <div v-for="(value, key, index) in sortsList" :id="key"
-               :class="['tab-pane fade', { 'active show': key == activeTab }]"
+          <div v-for="(value, key) in sortsList" :id="key"
+               :class="['tab-pane fade', { 'active show': key === activeTab }]"
                role="tabpanel"
                aria-labelledby="pills-home-tab">
-            <div v-for="(sort, key, index) in value" class="row no-gutters row-cols-1">
+            <div v-for="(sort, key) in value" class="row no-gutters row-cols-1">
               <div class="col mb-4">
                 <div class="card h-100">
 
